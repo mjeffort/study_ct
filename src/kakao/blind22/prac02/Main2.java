@@ -1,18 +1,8 @@
 package kakao.blind22.prac02;
 
+import java.util.Arrays;
+
 public class Main2 {
-
-    public int solution(int n, int k) {
-        int answer = 0;
-        String[] split = Integer.toString(n, k).split("0+");
-        for (String s : split) {
-            if (isPrime(Long.parseLong(s))) {
-                answer++;
-            }
-        }
-
-        return answer;
-    }
 
     public static boolean isPrime(long num){
         if(num < 2) return false;
@@ -23,10 +13,23 @@ public class Main2 {
     }
 
     public static void main(String[] args) {
-        Main2 main = new Main2();
-        int n = 437674;
-        int k = 3;
-        int solution = main.solution(n, k);
-        System.out.println(solution);
+        int n = 120;
+        boolean[] isPrime = new boolean[n + 1];
+        Arrays.fill(isPrime, true);
+
+        isPrime[0] = false;
+        isPrime[1] = false;
+        for (int i = 2; i * i <= n; i++) {
+            if (isPrime[i]) {
+                for (int j = i*i; j <= n; j+=i) {
+                    isPrime[j] = false;
+                }
+            }
+        }
+
+        for (int i = 1; i <= n; i++) {
+            if(isPrime[i])
+                System.out.print(i+" ");
+        }
     }
 }
