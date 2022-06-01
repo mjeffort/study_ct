@@ -5,3 +5,5 @@ out
 .DS_Store
 src/prog/skillcheck
 src/study
+
+src/hackerrank/test
