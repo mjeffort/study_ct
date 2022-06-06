@@ -17,55 +17,64 @@ public class Problem160 {
     }
 
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode currA = headA;
+        ListNode currB = headB;
 
-        ListNode pA = headA;
-        ListNode pB = headB;
-        List<ListNode> listA = new ArrayList<>();
-        List<ListNode> listB = new ArrayList<>();
-
-        while (pA.next != null) {
-            listA.add(pA);
-            pA = pA.next;
+        while(currA != currB) {
+            currA = currA == null ? headB : currA.next;
+            currB = currB == null ? headA : currB.next;
         }
 
-        while (pB.next != null) {
-            listB.add(pB);
-            pB = pB.next;
-        }
+        return currA;
 
-        ListNode t = null;
-        int dif = Math.abs(listA.size() - listB.size());
-        if (listA.size() >= listB.size()) {
-            int a = dif;
-            int b = 0;
-            while (b < listB.size()) {
-                if (listA.get(a) == listB.get(b)) {
-                    t = listA.get(a);
-                }
-                a++;
-                b++;
-            }
-        } else {
-            int a = 0;
-            int b = dif;
-            while (a < listA.size()) {
-                if (listA.get(a) == listB.get(b)) {
-                    t = listA.get(a);
-                    break;
-                }
-                a++;
-                b++;
-            }
-        }
-
-        if(t == null) return null;
-        int k = listA.indexOf(t);
-
-        while (k-- > 0) {
-            headA = headA.next;
-        }
-
-        return headA;
+//        ListNode pA = headA;
+//        ListNode pB = headB;
+//        List<ListNode> listA = new ArrayList<>();
+//        List<ListNode> listB = new ArrayList<>();
+//
+//        while (pA.next != null) {
+//            listA.add(pA);
+//            pA = pA.next;
+//        }
+//
+//        while (pB.next != null) {
+//            listB.add(pB);
+//            pB = pB.next;
+//        }
+//
+//        ListNode t = null;
+//        int dif = Math.abs(listA.size() - listB.size());
+//        if (listA.size() >= listB.size()) {
+//            int a = dif;
+//            int b = 0;
+//            while (b < listB.size()) {
+//                if (listA.get(a) == listB.get(b)) {
+//                    t = listA.get(a);
+//                }
+//                a++;
+//                b++;
+//            }
+//        } else {
+//            int a = 0;
+//            int b = dif;
+//            while (a < listA.size()) {
+//                if (listA.get(a) == listB.get(b)) {
+//                    t = listA.get(a);
+//                    break;
+//                }
+//                a++;
+//                b++;
+//            }
+//        }
+//
+//        if(t == null) return null;
+//        int k = listA.indexOf(t);
+//
+//        while (k-- > 0) {
+//            headA = headA.next;
+//        }
+//
+//        return headA;
     }
 
     public static void main(String[] args) {
